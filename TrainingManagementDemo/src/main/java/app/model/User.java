@@ -24,7 +24,7 @@ public class User implements Serializable{
 	private String firstName;
 	@Column(name="last_name")
 	private String lastName;
-	@Column
+	@Column(name="username")
 	private String email;
 	@Column(name="contact_number")
 	private String contactNumber;
@@ -32,8 +32,8 @@ public class User implements Serializable{
 	private String password;
 	@Transient
 	private String confirmPassword;
-	@Column
-	private boolean active;
+	@Column(columnDefinition="boolean not null")
+	private boolean enabled;
 	@Column
 	private String role;
 	@Column(name="user_type") 
@@ -56,7 +56,7 @@ public class User implements Serializable{
 		this.contactNumber = contactNumber;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
-		this.active = active;
+		this.enabled = active;
 		this.role = role;
 		this.userType = userType;
 	}
@@ -72,7 +72,7 @@ public class User implements Serializable{
 		this.contactNumber = contactNumber;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
-		this.active = active;
+		this.enabled = active;
 		this.role = role;
 		this.userType = userType;
 	}
@@ -88,7 +88,7 @@ public class User implements Serializable{
 		this.contactNumber = user.getContactNumber();
 		this.password = user.getPassword();
 		this.confirmPassword = user.getConfirmPassword();
-		this.active = user.isActive();
+		this.enabled = user.isActive();
 		this.role = user.getRole();
 		this.userType = user.getUserType();
 	}
@@ -175,12 +175,12 @@ public class User implements Serializable{
 
 
 	public boolean isActive() {
-		return active;
+		return enabled;
 	}
 
 
 	public void setActive(boolean active) {
-		this.active = active;
+		this.enabled = active;
 	}
 
 
@@ -208,7 +208,7 @@ public class User implements Serializable{
 	public String toString() {
 		return "User [id=" + id + ", prn=" + prn + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", contactNumber=" + contactNumber + ", password=" + password + ", confirmPassword="
-				+ confirmPassword + ", active=" + active + ", role=" + role + ", userType=" + userType + "]";
+				+ confirmPassword + ", active=" + enabled + ", role=" + role + ", userType=" + userType + "]";
 	}
 	
 	
